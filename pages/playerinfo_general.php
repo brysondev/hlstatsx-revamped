@@ -450,43 +450,6 @@ For support and installation notes visit http://www.hlxcommunity.com
 					</td>
 				</tr>
 				<tr class="bg1">
-					<td style="width:45%;">Shots per Kill:</td>
-					<td style="width:55%;" colspan="2">
-						<?php
-							$db->query
-							("
-								SELECT
-									IFNULL(ROUND((SUM(hlstats_Events_Statsme.hits) / SUM(hlstats_Events_Statsme.shots) * 100), 2), 0.0) AS accuracy,
-									SUM(hlstats_Events_Statsme.shots) AS shots,
-									SUM(hlstats_Events_Statsme.hits) AS hits,
-									SUM(hlstats_Events_Statsme.kills) AS kills
-								FROM
-									hlstats_Events_Statsme
-								WHERE
-									hlstats_Events_Statsme.playerId='$player'
-							");
-							list($playerdata['accuracy'], $sm_shots, $sm_hits, $sm_kills) = $db->fetch_row();
-							if ($sm_kills > 0)
-							{
-								echo sprintf('%.2f', ($sm_shots / $sm_kills));
-							}
-							else
-							{
-								echo '-';
-							}
-						?>
-					</td>
-				</tr>
-				<tr class="bg2">
-					<td style="width:45%;">Weapon Accuracy:</td>
-					<td style="width:55%;" colspan="2">
-						<?php
-							echo $playerdata['acc'] . '%';
-							echo " (".sprintf('%.0f', $playerdata['accuracy']).'%*)';
-						?>
-					</td>
-				</tr>
-				<tr class="bg1">
 					<td style="width:45%;">Headshots:</td>
 					<td style="width:55%;" colspan="2">
 						<?php
